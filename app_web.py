@@ -14,7 +14,6 @@ from docx import Document # WICHTIG: Hier oben laden!
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 PEXELS_API_KEY = st.secrets["PEXELS_API_KEY"]
 
-
 st.set_page_config(page_title="Synthetix Hub | AI OS", page_icon="🌌", layout="wide")
 
 # Custom CSS
