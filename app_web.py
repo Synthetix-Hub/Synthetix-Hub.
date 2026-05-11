@@ -11,8 +11,8 @@ from docx import Document # WICHTIG: Hier oben laden!
 # ======================================================
 # SYNTHETIX HUB - KONFIGURATION
 # ======================================================
-GROQ_API_KEY = "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"
-PEXELS_API_KEY = "7FGKkAuPmxhJIQ9ew2S5HRSAnrkMkjDctylDNrNtzbsdxLhJ6fKOq5fy"
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+PEXELS_API_KEY = st.secrets["PEXELS_API_KEY"]
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 st.set_page_config(page_title="Synthetix Hub | AI OS", page_icon="🌌", layout="wide")
