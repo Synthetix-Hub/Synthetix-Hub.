@@ -33,12 +33,36 @@ with st.sidebar:
     st.caption("Version 1.2.1 | Admin Mode")
 
 # --- TOOL 1: PRÄSENTATIONEN ---
-if menu == "📽️ Präsentations-Generator":
-    st.markdown('<p class="main-title">📽️ Präsentations-Generator</p>', unsafe_allow_html=True)
-    t_in = st.text_input("Thema:")
+# --- TOOL 1: PRÄSENTATIONEN ---
+if menu == "🎓 Präsentations-Generator":
+    st.markdown('<p class="main-title">🎓 Präsentations-Generator</p>', unsafe_allow_html=True)
+    t_in = st.text_input("Thema der Präsentation:")
+    
     if st.button("🚀 Engine starten") and t_in:
-        st.info("Generierung läuft...")
+        with st.spinner("Synthetix Hub arbeitet..."):
+            # 1. KI fragt Groq nach Inhalten
+            headers = {"Authorization": f"Bearer {GROQ_API_KEY}"}
+            payload = {
+                "model": "llama-3.3-70b-versatile",
+                "messages": [{"role": "user", "content": f"Erstelle 5 Folien über {t_in}. Gib nur den Text aus, getrennt durch '---'."}]
+            }
+            res = requests.post("https://api.groq.com/openai/v1/chat/completions", json=payload, headers=headers)
+            content = res.json()['choices'][0]['message']['content']
 
+            # 2. PowerPoint Datei erstellen
+            prs = Presentation()
+            for slide_text in content.split('---'):
+                slide = prs.slides.add_slide(prs.slide_layouts[1])
+                slide.shapes.title.text = t_in
+                slide.placeholders[1].text = slide_text.strip()
+
+            # 3. Datei im Speicher bereitstellen
+            pptx_io = io.BytesIO()
+            prs.save(pptx_io)
+            pptx_io.seek(0)
+
+            st.success("Präsentation fertig!")
+            st.download_button(label="📥 Datei herunterladen", data=pptx_io, file_name="Praesentation.pptx", mime="application/vnd.openxmlformats-officedocument.presentationml.presentation")
 # --- TOOL 2: TEXT-OPTIMIERER ---
 elif menu == "📝 Text-Optimierer":
     st.markdown('<p class="main-title">📝 Text-Optimierer</p>', unsafe_allow_html=True)
