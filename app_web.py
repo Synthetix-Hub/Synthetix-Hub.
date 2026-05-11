@@ -34,7 +34,7 @@ with st.sidebar:
 
 # --- TOOL 1: PRÄSENTATIONEN ---
 # --- TOOL 1: PRÄSENTATIONEN ---
-if menu == "🎓 Präsentations-Generator":
+if menu == "📽️ Präsentations-Generator":
     st.markdown('<p class="main-title">🎓 Präsentations-Generator</p>', unsafe_allow_html=True)
     t_in = st.text_input("Thema der Präsentation:")
     
