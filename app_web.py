@@ -46,7 +46,18 @@ if menu == "📽️ Präsentations-Generator":
                 "model": "llama-3.3-70b-versatile",
                 "messages": [{"role": "user", "content": f"Erstelle 5 Folien über {t_in}. Gib nur den Text aus, getrennt durch '---'."}]
             }
-            res = requests.post("https://api.groq.com/openai/v1/chat/completions", json=payload, headers=headers)
+            res = res = requests.post("https://api.groq.com/openai/v1/chat/completions", json=payload, headers=headers)
+            
+            if res.status_code == 200:
+                result_json = res.json()
+                content = result_json['choices'][0]['message']['content']
+                
+                # Hier geht es weiter mit # 2. PowerPoint Datei erstellen
+                prs = Presentation()
+                # ... (dein restlicher Code für die Folien)
+            else:
+                st.error(f"Fehler von Groq: {res.status_code}")
+                st.write(res.text) # Das zeigt uns genau, WARUM der Key abgelehnt wird
             content = res.json()['choices'][0]['message']['content']
 
             # 2. PowerPoint Datei erstellen
