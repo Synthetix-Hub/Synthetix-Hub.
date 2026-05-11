@@ -41,7 +41,7 @@ if menu == "📽️ Präsentations-Generator":
     if st.button("🚀 Engine starten") and t_in:
         with st.spinner("Synthetix Hub arbeitet..."):
             # 1. KI fragt Groq nach Inhalten
-            headers = {"Authorization": f"Bearer {GROQ_API_KEY}"}
+            headers = {"Authorization": "Bearer {GROQ_API_KEY}"}
             payload = {
                 "model": "llama-3.3-70b-versatile",
                 "messages": [{"role": "user", "content": f"Erstelle 5 Folien über {t_in}. Gib nur den Text aus, getrennt durch '---'."}]
