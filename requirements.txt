@@ -1,0 +1,7 @@
+streamlit
+pytesseract
+Pillow
+requests
+groq
+python-docx
+python-pptx
