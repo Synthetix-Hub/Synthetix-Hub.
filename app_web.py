@@ -13,7 +13,7 @@ from docx import Document # WICHTIG: Hier oben laden!
 # ======================================================
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 PEXELS_API_KEY = st.secrets["PEXELS_API_KEY"]
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
 
 st.set_page_config(page_title="Synthetix Hub | AI OS", page_icon="🌌", layout="wide")
 
